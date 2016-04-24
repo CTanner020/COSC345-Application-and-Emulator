@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="windows-1252">
+	<title>Report 1 for COSC team</title>
+</head>
+
+<body>
+
+<h1>Report 1 for COSC team.</h1>
+
+<h2>Team name.</h2>
+<p>COSC Team.</p>
+
+<h2>Personal Details.</h2>
+<p><b>James Cross</b> 1350026<br>
+Jamesdcross@gmail.com<br>
+Java Programming Experience<br>
+Experience writing reports<br>
+Managerial skills<br>
+Organisational skills<br>
+Presentational skills<br>
+No experience with SVG, The Canvas Element, HTML 5, JavaScript, CSS</p>
+
+<p><b>Callum Tanner</b> 2506432<br>
+tannercallum020@gmail.com<br>
+Previous experience with HTML5, CSS, Java.<br>
+No experience with HTML5's Canvas element, JavaScript, or SVG.<br>
+Personally well organised with good communication skills and written English. Experience working in small teams in a professional environment.<br>
+Limited creative ability.<br>
+<b>-"I'm good at solving problems. I'm bad at coming up with new creative directions."</b></p>
+
+<p><b>Hussain Almarhoon</b>  344651<br>
+silver-moon1412@hotmail.com<br>
+I have done Python, Java, C, NetBeans and I used a little bit of JavaScript in a project through the course.<br>
+English is my second language so any part with the language I will stay away from it.</p>
+
+<p><b>Youssef Alghamdi</b>  7266339<br>
+yo_max.alghamdi@hotmail.com<br>
+I have experience with C, CSS, NetBeans and a little with JavaScript.<br>
+Not good enough at writing reports as my English is a second language.<br>
+Good at managing stuff.</p>
+
+<h2>Description of the App prototype.</h2>
+<p><b>Features:</b></p>
+<p>Achievable</p>
+<ul>
+	<li>Display accurate days and months of the year (leap years etc.)</li>
+	<li>Display Local/World Events</li>
+	<li>Adjustable colours of calendar display</li>
+	<li>Adjustable alert sounds</li>
+	<li>Event creation, make appointments</li>
+	<li>Make appointments repeat</li>
+	<li>Display address of appointment/event locations</li>
+	<li>Priorities for events/appointments</li>
+</ul>
+
+<p>Extra Features (may not be achievable)</p>
+<ul>
+	<li>App predictively inserts appointments/events based on past appointments/events</li>
+	<li>Imports Facebook and Email Contacts</li>
+	<li>GPS – tells you where your appointment/event is via Google Maps, tells you if you’re running late and how long it will take to get there.</li>
+	<li>Connection to phone</li>
+</ul>
+
+<h2>Functionality.</h2>
+<p>The screen size of a smart watch is about 38mm meaning there is not much room; we have opted for a bottom up approach. If we start by looking at the day it would just contain active events/appointments (not every hour of the day) which should fit on one screen (no swiping needed) ideally. If the day is filled with appointments the view would be scrollable up and down to accommodate every appointment.</p>
+<p>To enter an appointment, the same scrollable approach would be used. In this mode a more detailed display featuring each hour in the day as a block in a table which you could scroll through. Then you would tap on a block to enter an appointment.</p>
+<p>A small back button is the main navigation tool of our calendar app. Navigating from the day display (which is likely the most commonly used display) you would tap the back button to go to week display which displays days instead of hours then months which displays weeks instead of days and so on.</p>
+
+<h2>Emulator Role vs Application Role.</h2>
+<p>For initial development and testing of our application, we will simultaneously develop an emulator that will run in a browser environment. This emulator’s primary function will be to provide the inputs for the application so that we can make the application without restricting the functions to any particular platform. It will also act as a way to call the application within the web browser without directly interaction between the app and browser, as well as supply the information that would otherwise come from the watch.</p>
+<p>The application will handle:</p>
+<ul>
+	<li>display and management of events and the calendar</li>
+	<li>settings of colour/sounds</li>
+	<li>repetition of appointment events</li>
+	<li>prediction of repeat events (extension feature)</li>
+</ul>
+<p>By contrast, the emulator will provide:</p>
+<ul>
+	<li>inputs to the application (single tap, double tap, swipe left, text entry, etc.)</li>
+	<li>calling of the application within the browser</li>
+	<li>storage of events that are created in the application</li>
+	<li>the current date and time</li>
+	<li>GPS location (extension feature)</li>
+	<li>pseudo-Facebook/Gmail account (extension feature)</li>
+	<li>pseudo-phone to connect to (extension feature)</li>
+</ul>
+<p>To help demonstrate this division, when called in the browser, the emulator will display as shown in the diagram below:</p>
+<img src="emulatorpicture.jpg" alt="Emulator diagram" style="width:340;height:385;">
+
+<h2>Research into Calendar Apps.</h2>
+<p>In researching other smart watch apps, we found that different views for day, month and year are pretty standard. Changeable themes and alerts are also a common feature. Displaying events that can be viewed at a glance is key. We also researched why anyone would in fact want a smart watch. The primary reason seems to be the fact it does not intrude on a conversation or business meeting. Like looking at a “bulky” phone would. So efficiency and ease of use is the name of the game.</p>
+
+<h2>Justification for using GitHub.</h2>
+<p>For our version control system, we have decided to use GitHub. The main reason is, that some of us already have experience with GitHub. This means that teaching the other members is easier, rather than everyone on the team trying to learn a new system. Also GitHub offers a series of features that make it a good choice for version control. Including the ability to regulate which collaborators can access the repository, automatic changelog creation and dynamically editable files. GitHub is widely used in the industry; this means that learning it now puts us at an advantage for employment.</p>
+<p><a href="https://github.com/CTanner020/COSC345.git">Repository URL.</a></p>
+
+<h2>Why we Chose to use Dart for our JavaScript.</h2>
+<p>Nowadays, there are a multitude of languages for JavaScript development. After a bit of searching, we have decided to use Dart.  Our group is confident that the functionality of this language will suit our purposes.</p>
+<p>Dart takes the separation from JavaScript even further, and is a whole new language, designed from the ground up. It is a language that is not used for a browser but it is more used as a general language. Moreover, Dart can compiles into JavaScript which is the only link between JavaScript and Dart.</p>
+<p>Dart is a broadly useful programming language that is implied for front end Web development, but can also be used to make numerous different sorts of applications. It compiles directly to JavaScript, so it can be used across all browsers and arguably, it fixes a lot of the problems that JavaScript has.</p>
+
+<h2>Why we Chose to use Eclipse for our Editor.</h2>
+<p>It was originally decided to use Eclipse as our JavaScript IDE.  On further investigation into Reddit forums and review sites, no one seems to recommend Eclipse for JavaScript. Its many faults include incorrect code diagnostics and a lack of code folding with very slow start up. We then looked into Webstorm as an alternative, which I think we should try as it is recommended highly. However it does seem like it might have a steep learning curve. Netbeans may be the best option for us at this time as some of us already have experience with it.</p>
+
+<h2>Why we Chose to use Firebug for our Debugging.</h2>
+<p>The reason we chose Firebug is because it allows us to edit, debug, and monitor CSS, HTML and JavaScript live in any web page. Also and more importantly it quickly finds the errors when things go wrong and immediately gives you detailed and useful information about the errors in JavaScript, CSS, and XML. In addition, Firebug has a better and cleaner interface for editing HTML and CSS over Chrome.</p>
+
+<h2>Project Roles.</h2>
+<ul>
+	<li>Report Writing: James</li>
+	<li>Code Testing: James</li>
+	<li>Coding: Yousef</li>
+	<li>Coding: Hussain</li>
+	<li>Manager: Callum</li>
+</ul>
+<p>These roles are flexible as all team members will assist with coding/debugging as needed.</p>
+
+<h2>Timetable.</h2>
+
+<h4>Learning JavaScript and associated programs:</h4>
+<p>Whole Team: 07/04/2016 – 21/04/2016</p>
+
+<h4>Emulator Development:</h4>
+<p>Hussein, Yousef (with help) 14/04/2016 - 30/04/2016</p>
+<ul>
+	<li>Build the emulator in the browser</li>
+	<li>Produce a graphical display for the browser</li>
+	<li>Set up communication with the browser</li>
+	<li>Calendar for application to access</li>
+</ul>
+
+<h4>Basic App Development:</h4>
+<p>Hussein, Yousef (with help) 01/05/2016 - 14/05/2016</p>
+<ul>
+	<li>Add appointments</li>
+	<li>One day appointments (testing)</li>
+	<li>Display appointments (for one day)</li>
+</ul>
+
+<h4>Testing/Debugging:</h4>
+<p>James 10/05/2016  –  22/05/2016</p>
+
+<h4>Draft System Delivery Date:</h4>
+<p>23/05/2016</p>
+
+<h4>Reports:</h4>
+<p>Assignment 1 : James  07/04/2016  –  12/04/2016<br>
+Assignment 2 : James  09/05/2016  –  15/05/2016<br>
+Assignment 3 : James  04/08/2016  –  10/08/2016<br>
+Assignment 4 : James  26/09/2016  –  05/10/2016</p>
+
+
+<h4>Adding Additional Functionality:</h4>
+<p>Hussein, Yousef (with help)  24/05/2016 – 12/06/2016</p>
+<ul>
+	<li>Display accurate date, days and months of the year (leap years etc)</li>
+	<li>Display Local/World Events</li>
+	<li>Adjustable colours of calendar display</li>
+</ul>
+<p>Hussein, Yousef (with help)  13/06/2016 – 13/07/2016 (if  there is time)</p>
+<ul>
+	<li>Repeating appointments</li>
+	<li>Display address of appointment/event location</li>
+	<li>Priorities for events/appointments</li>
+</ul>
+
+<h4>Additional Testing/Debugging:</h4>
+<p>James 9/05/2016  –  15/05/2016 (on-going)</p>
+
+<h2>Costings.</h2>
+<p>We evaluated the costs for Auckland as that is the main business hub in New Zealand. The budget provided below has been calculated on a one-week basis.</p>
+<table>
+	<tr>
+		<td>Accommodation</td>
+		<td><b>$165.00</b></td>
+	</tr>
+	<tr>
+		<td>Power</td>
+		<td><b>$15.10</b></td>
+	</tr>
+	<tr>
+		<td>Groceries</td>
+		<td><b>$60.10</b></td>
+	</tr>
+	<tr>
+		<td>Transport</td>
+		<td><b>$40.85</b></td>
+	</tr>
+	<tr>
+		<td>Clothes</td>
+		<td><b>$13.60</b></td>
+	</tr>
+	<tr>
+		<td>Takeaways</td>
+		<td><b>$15.65</b></td>
+	</tr>
+	<tr>
+		<td>Leisure</td>
+		<td><b>$31.60</b></td>
+	</tr>
+	<tr>
+		<td>Toiletries/beauty/makeup</td>
+		<td><b>$8.30</b></td>
+	</tr>
+	<tr>
+		<td>Phone/internet</td>
+		<td><b>$10.00</b></td>
+	</tr>
+	<tr>
+		<td>Cellphone</td>
+		<td><b>$7.50</b></td>
+	</tr>
+	<tr>
+		<td><b>Weekly total</b></td>
+		<td><b>$367.70</b></td>
+	</tr>
+</table>
+<p>After some investigation in to renting a modest Office space it is surprisingly cheap, $230 per week to rent an Office space (really just a large room) with furnishings, power and internet provided:</p>
+<a href="https://www.office-hub.co.nz/listing.aspx?SurgaWebListingId=108515">https://www.office-hub.co.nz/listing.aspx?SurgaWebListingId=108515</a>
+<p>There are two ways to go when renting computers. The expensive way is to buy new mid-range iMacs (2.8GHz Processor 1TB Storage) for $2,399. The advantage of this is they come with a lot of useful software and they also obviously give you native access to the mac operating system. However the more affordable option is to buy second hand PC’s. You can get a pretty powerful second hand PC for $800 – $1200 on trade me. I guess this depends largely on what platform you are designing your app for. You could also pick up an older model iMac say 2011 for around $800 on trade me.</p>
+<p>Visiting a few websites led to some interesting results on how much a software developer might actually get paid. Some sites estimate $65,490 per year, others 55,000 to 182,000 a year. As we would be a small start-up we estimate around $40,000 a year is probably more realistic.</p>
+
+</body>
+</html>
