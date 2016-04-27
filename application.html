@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Application</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=620, height=620">
+        <script type="text/javascript">
+        function draw(){
+            var canvas = document.getElementById('appWindow');
+            if (canvas.getContext){
+                var ctx = canvas.getContext('2d');
+                
+                ctx.strokeRect(0,0,0,620,25);
+                ctx.strokeRect(0,25,620,50);
+                ctx.strokeRect(0,50,620,75);
+                ctx.strokeRect(0,75,620,100);
+                ctx.strokeRect(0,100,620,125);
+                ctx.strokeRect(0,125,620,150);
+                ctx.strokeRect(0,150,620,175);
+                ctx.strokeRect(0,175,620,200);
+                ctx.strokeRect(0,200,620,225);
+                ctx.strokeRect(0,225,620,250);
+                ctx.strokeRect(0,250,620,275);
+                ctx.strokeRect(0,275,620,300);
+                ctx.strokeRect(0,300,620,325);
+                ctx.strokeRect(0,325,620,350);
+                ctx.strokeRect(0,350,620,375);
+                ctx.strokeRect(0,375,620,400);
+                ctx.strokeRect(0,400,620,425);
+                ctx.strokeRect(0,425,620,450);
+                ctx.strokeRect(0,450,620,475);
+                ctx.strokeRect(0,475,620,500);
+                ctx.strokeRect(0,500,620,525);
+                ctx.strokeRect(0,525,620,550);
+                ctx.strokeRect(0,550,620,575);
+                ctx.strokeRect(0,575,620,600);
+                
+            }
+        }
+        </script>
+        <style type="text/css">
+            canvas { border: 1px solid black; }
+        </style>
+    </head>
+    <body onload="draw();">
+        <canvas id="appWindow" width="620" height="620"></canvas>
+    </body>
+</html>
