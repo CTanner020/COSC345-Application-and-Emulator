@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="utf-8">
+	<title>Report 2 for COSC Team</title>
+</head>
+
+<body>
+
+<h2>Report 2 for COSC Team</h2>
+
+
+<p>James Cross<br>
+   Callum Tanner<br>
+   Hussain Almarhoon<br>
+   Youssef Alghamdi<br></p>
+
+
+<p> <strong>The GitHub repository where the project is held:</strong> </p>
+
+
+<p> <a href="https://github.com/CTanner020/COSC345-Application-and-Emulator">https://github.com/CTanner020/COSC345-Application-and-Emulator</a> </p>
+
+
+<p> <strong>How to open the project</strong> </p>
+
+<p>
+    Assignment 2 is contained in the file Assignment2Final.zip to use the project simply unzip the file and load the Assignment2Final project into NetBeans.
+    Then run the project from there.
+</p>
+<p>
+    The project contains the index.html which communicates only with the emulator. The JavaScript file for the emulator and appFunctions which contains the
+    application code.
+</p>
+
+<p> <strong>Navigation </strong> </p>
+
+<p>
+    The first screen (with a red background) is the home screen. Click and hold the left mouse button drag the mouse to the right and release the button, to go
+    to the day setting screen (blue background). Do the same downward to decrement the day of the month and upward to increment it. To navigate back to the
+    home screen from the day screen preform the same action to the left. From the home screen do the same action to the left again to enter the month screen.
+    The functionality is the same here, drag up to increment the months and down to decrement them.
+	
+</p>
+
+<p>
+    The project has been developed in NetBeans. The team feels most comfortable with this IDE as it is used in the papers Info 221 and 223. Therefore Hussain and
+    Yousef have the most experience in using it. The libraries used are jQuery which can be obtained here <a href="https://jquery.com/">https://jquery.com/</a>
+    and is maintained by the jQuery foundation and Json3 which can be downloaded at <a href="http://www.javascriptoo.com/json3">http://www.javascriptoo.com/json3</a> 
+	the author is Bestiejs (the original Json was popularized by Douglas Crockford). We have elected also to use just straight 
+	JavaScript (with jQuery) over Dart, as there is a lot more information and tutorials for using the jQuery library in JavaScript than for Dart.
+</p>
+<p>
+    The emulator/application development was performed primarily in Chrome. Chrome was used simply because it is the most common browser in the operating
+    systems we are using, so it was a natural starting point. Hence Firebug was not used for debugging; the team has found the standard console/inspector in
+    Chrome’s developer tools sufficient for debugging at this point.
+</p>
+
+   <p> <strong> Code validation was performed with the following tools</strong> </p>
+
+
+<p>HTML W3 HTML validation (<a href="https://validator.w3.org/#validate_by_input">https://validator.w3.org/#validate_by_input</a>)</p>
+
+
+
+<p> CSS Validation with W3 CSS validator (<a href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/</a>)</p>
+
+
+<p><strong>Testing</strong></p>
+
+
+<p>
+    The emulator and application have been tested on multiple browsers and operating systems. Chrome, Firefox, Internet Explorer, and Microsoft Edge on Windows
+    10, XP, MACSOX El Capitan and Linux. It has performed as intended on each of these platforms.
+</p>
+<p>
+    The main problem with the application is more of a design flaw than a bug. When you click, drag and release the mouse in an up and down motion. If the
+    angle between the click and the release is not quite straight, the application currently takes this as a swipe from left to right not as up and down which
+    sends the user back to the home screen. This will be amended in the next version.
+</p>
+<p>
+    Current progress on the application itself has been slower than anticipated, but it is being made. As it stands, the application can move between dates
+    using mouse-click events, but no appointments can be made so far. This is due to a combination of our team’s lack of experience with JavaScript and
+    everyone being pressed for time by other assignments. However, this is by no means a failure. What we currently have is an underlying structure that we can
+    build on.
+</p>
+<p>
+    We have changed one key feature from our original design. Rather than the buttons being placed around the canvas element window, as was the original plan,
+    movement between “windows” and altering the day/month is achieved through mouse-click swipes (this emulates the swiping functionality of a smart watch).
+    This may need to change before the final version of the application, since the mouse-click swipes may be a function of the browser and therefore need to be
+    hidden by the emulator, but the functions themselves work for now and can easily be replaced at a later date. In testing the swiping navigation we
+    currently have, the original back button design may not be necessary as navigation through swipes only feels more intuitive.
+</p>
+
+<p><strong>Moving Forward</strong></p>
+
+<p>
+    First, the ability to change the week of the appointment needs to be resolved. This is more difficult because date objects do not have week functions built
+    into them. Because of this, it may be necessary to remove this feature and simply adjust by day and month.
+</p>
+<p>
+    Second, a way of saving appointments needs to be implemented. The challenge here is the ability to create objects that persist after the
+    emulator/application is closed.
+</p>
+<p>
+    Third, the aesthetics need work. As it stands, the application is plain-looking and unappealing. If we want people to use our app, we need something that
+    looks better than it currently does. After this, all other features that we initially planned on (adjustable alert sounds, make appointments repeat etc.)
+    can be added.
+</p>
+<p>
+    In terms of a timeframe for these changes, our deadline is roughly the 12<sup>th</sup> of August. The break between semesters means that our group won’t
+    have other University work, which gives us until July 11<sup>th</sup> to work uninterrupted.
+</p>
+
+ <p>Therefore the revised schedule is as follows</p>
+
+<p>
+    Creation of lasting/recurring events: 20<sup>th</sup> June
+    <br/>
+    Improved visuals: 27<sup>th</sup> June
+    <br/>
+    Other feature implementation: 11<sup>th</sup> July
+    <br/>
+    Debugging/other jobs: 12<sup>th</sup> August
+</p>
+</body>
+</html>
