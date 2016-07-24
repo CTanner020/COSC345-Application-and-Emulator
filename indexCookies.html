@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+COSC345 Assignments 2 "The Emulator"
+-->
+<html>
+    <head>
+
+         <button onclick="myFunction()" type="button" id="demo">Click Me!</button> 
+          My comment: <input id="comment" type="text" name="fname">   <br>
+    </body>
+    
+    
+    
+    
+<script>
+    
+
+
+//document.getElementById("demo").onclick = function() {myFunction()};
+
+function myFunction() {
+    //document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+    var mycomment = document.getElementById("comment").value  ;
+    var dateSetting = new Date();
+    //alert(dateSetting) ; 
+    
+    document.cookie = "" ; 
+    setCookie(mycomment,dateSetting) ; 
+     
+}
+
+    function setCookie(mycomment,dateSetting){
+        // get the right date according to the page 
+    var oldCookie = document.cookie ;  
+
+    var cookieString = oldCookie +    "myComment=" + mycomment +  ",Date=" + dateSetting + ",";
+    document.cookie = cookieString;
+}
+
+
+</script>
+
+</html>
