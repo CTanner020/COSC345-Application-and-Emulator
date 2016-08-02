@@ -10,27 +10,22 @@
 var ctx ;
 var boxes = [];  //An array for holding each box
 var d = new Date();  //date variable used to set the date for each box
-d.setDate(1);         //Starts drawing on the first of the month
-var x = d.getMonth(); //used later on to check that the month is the same
+var x; //used later on to check that the month is the same
+var x1;
+var x2;
+var y1;
+var y2;
 var dayNames = ["Su","M", "Tu", "W", "Th", "F", "Sa"];
-    
-    
-    
-          var group = 2;
-        var x1;
-        var x2;
-        var y1;
-        var y2;
-        var dateSetting = new Date();
-        var dateCurrent = new Date();
+
+        var currentDate = new Date();
         var monthNames = ["January", "February", "March", "April", "May",
             "June", "July", "August", "September", "October", "November",
             "December"];
 
         var oldCanvas = '<canvas '  +  
-                //'onmousedown=\"mouseStart(event)\" onmouseup=\"mouseEnd(event)\" '+
+                'onmousedown=\"mouseStart(event)\" ' + 'onmouseup=\"mouseEnd(event)\" '+
                 ' width="' + 300 + '" height="' + 300
-            + '" id="' + 'canvas_1"  ' + 'style=\"border:1px solid #c3c3c3;\" onmouseup=\"clicked(event)\" ' + '>' + 
+            + '" id="' + 'canvas_1"  ' + 'style=\"border:1px solid #c3c3c3;\" ' + '>' + 
             'initialisation!' +
             '</canvas>'; 
             
@@ -72,30 +67,38 @@ var drawBox = function(text,x,y,width,height) {
 };
     //Draws the days of the week across the top
     function drawTwo(){
+        boxes = [];
         var c = document.getElementById("canvas_1");
         ctx = c.getContext("2d");
         var canvasWidth = c.width;
         var canvasHeight = c.height;
         var boxWidth = canvasWidth/7;
         var boxHeight = canvasHeight/7;
-for(i=0;i<dayNames.length;i++){
- 
-    ctx.fillStyle = "#000000";
-    ctx.font = "15px Georgia";
-    ctx.fillText(monthNames[d.getMonth()], 50, 20);
-    ctx.fillText(dayNames[i],(5+i*boxWidth),50);
-}
-for(i=0;i<=6;i++){
-    for(j=0;j<=6;j++){ //Makes a grid for drawing
-	if(j===d.getDay() && x ===d.getMonth()){ //Checks for the day being valid
-            ctx.fillStyle = "#FF0000";
-            ctx.fillRect((0+j*boxWidth),(60+i*boxHeight),(boxWidth-10),(boxHeight-10)); //Draws squares to show each box
+        x = d.getMonth();
+        var day = d.getDate();
+        d.setDate(1);
+        
+        for(i=0;i<dayNames.length;i++){
             ctx.fillStyle = "#000000";
-            drawBox(d.getDate(),(0+j*boxWidth),(60+i*boxHeight),(boxWidth-10),(boxHeight-10)); //Draws the proper boxes
-            d.setDate(d.getDate()+1); //increases the day so that we can draw the next one
-	}
-    }
-}
+            ctx.font = "15px Georgia";
+            ctx.fillText(monthNames[d.getMonth()], 50, 20);
+            ctx.fillText(dayNames[i],(5+i*boxWidth),50);
+        }
+        
+        for(i=0;i<=6;i++){
+            for(j=0;j<=6;j++){ //Makes a grid for drawing
+                if(j === d.getDay() && x === d.getMonth()){ //Checks for the day being valid
+                    ctx.fillStyle = "#FF0000";
+                    ctx.fillRect((0+j*boxWidth),(60+i*boxHeight),(boxWidth-10),(boxHeight-10)); //Draws squares to show each box
+                    ctx.fillStyle = "#000000";
+                    drawBox(d.getDate(),(0+j*boxWidth),(60+i*boxHeight),(boxWidth-10),(boxHeight-10)); //Draws the proper boxes
+                    d.setDate(d.getDate()+1); //increases the day so that we can draw the next one
+                }
+            }
+        }
+        d.setDate(day);
+        d.setMonth(x);
+        x = 0;
     }
 
 
@@ -132,23 +135,6 @@ document.getElementById("test").innerHTML = oldCanvas ;
     return pub;
 }());
 
-
-
-//The idea for this part is that, on mouseclick, it searches through each box
-//in the array, checks if the click was in that box's area, then returns the
-//date of the box. If we then combine that with a setDate(), we can go to that
-//day's screen.
-function clicked(event){
-     //console.log("hello") ; 
-
-    var clickedX = event.pageX;
-    var clickedY = event.pageY;
-    for (i=0; i<boxes.length; i++) {
-        if (clickedX < boxes[i].right && clickedX > boxes[i].left && clickedY > boxes[i].top && clickedY < boxes[i].bottom) {
-            alert('clicked:' + boxes[i].day);
-        }
-    }
-};
 
 
 //        
@@ -194,31 +180,36 @@ function clicked(event){
 //        }
 //        
         
-//        function mouseStart(event){
-//                x1 = event.pageX;
-//                y1 = event.pageY;
-//        }
-//        
-//        function mouseEnd(event){
-//                x2 = event.pageX;
-//                y2 = event.pageY;
-//                if(x2>x1+30 && group > 1){
-//                    group = group-1;
-//                } else if(x2<x1-30 && group < 3){
-//                    group = group+1;
-//                } else if(y2>y1+30 && group === 1){
-//                    dateSetting.setUTCDate(dateSetting.getUTCDate() - 1);
-//                } else if(y2>y1+30 && group === 3){
-//                    dateSetting.setUTCMonth(dateSetting.getUTCMonth() - 1);
-//                } else if(y2<y1-30 && group === 1){
-//                    dateSetting.setUTCDate(dateSetting.getUTCDate() + 1);
-//                } else if(y2<y1-30 && group === 3){
-//                    dateSetting.setUTCMonth(dateSetting.getUTCMonth() + 1);
-//                }
-//                draw();
-//        }
-//        
-//        
+        function mouseStart(event){
+            x1 = event.pageX;
+            y1 = event.pageY;
+        }
+        
+        function mouseEnd(event){
+                x2 = event.pageX;
+                y2 = event.pageY;
+                x = d.getMonth();
+                if(x2 < (x1-30)){
+                    x++;
+                    d.setMonth(x);
+                    resetCanvas(oldCanvas);
+                    drawTwo();
+                }
+                if(x2 > (x1+30)){
+                    x--;
+                    d.setMonth(x);
+                    resetCanvas(oldCanvas);
+                    drawTwo();
+                }
+                for (i=0;i<boxes.length; i++) {
+                        if (x2 < boxes[i].right && x2 > boxes[i].left && y2 > boxes[i].top && y2 < boxes[i].bottom) {
+                            alert('clicked:' + boxes[i].day);
+                        }
+                    
+            }
+        }
+        
+        
 
 
 
