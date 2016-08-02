@@ -12,7 +12,7 @@ var boxes = [];  //An array for holding each box
 var d = new Date();  //date variable used to set the date for each box
 d.setDate(1);         //Starts drawing on the first of the month
 var x = d.getMonth(); //used later on to check that the month is the same
-var dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+var dayNames = ["Su","M", "Tu", "W", "Th", "F", "Sa"];
     
     
     
@@ -82,15 +82,16 @@ for(i=0;i<dayNames.length;i++){
  
     ctx.fillStyle = "#000000";
     ctx.font = "15px Georgia";
-    ctx.fillText(dayNames[i],(5+i*boxWidth),20);
+    ctx.fillText(monthNames[d.getMonth()], 50, 20);
+    ctx.fillText(dayNames[i],(5+i*boxWidth),50);
 }
 for(i=0;i<=6;i++){
     for(j=0;j<=6;j++){ //Makes a grid for drawing
 	if(j===d.getDay() && x ===d.getMonth()){ //Checks for the day being valid
             ctx.fillStyle = "#FF0000";
-            ctx.fillRect((0+j*boxWidth),(30+i*boxHeight),(boxWidth-10),(boxHeight-10)); //Draws squares to show each box
+            ctx.fillRect((0+j*boxWidth),(60+i*boxHeight),(boxWidth-10),(boxHeight-10)); //Draws squares to show each box
             ctx.fillStyle = "#000000";
-            drawBox(d.getDate(),(0+j*boxWidth),(30+i*boxHeight),boxWidth,boxHeight); //Draws the proper boxes
+            drawBox(d.getDate(),(0+j*boxWidth),(60+i*boxHeight),(boxWidth-10),(boxHeight-10)); //Draws the proper boxes
             d.setDate(d.getDate()+1); //increases the day so that we can draw the next one
 	}
     }
