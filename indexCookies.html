@@ -5,37 +5,67 @@ COSC345 Assignments 2 "The Emulator"
 <html>
     <head>
 
-         <button onclick="myFunction()" type="button" id="demo">Click Me!</button> 
-          My comment: <input id="comment" type="text" name="fname">   <br>
-    </body>
-    
-    
-    
-    
+    <button onclick="myFunction()" type="button" id="demo">Click Me!</button> 
+    My comment: <input id="comment" type="text" name="fname">   <br>
+</body>
+
+
+
+
 <script>
-    
+
 
 
 //document.getElementById("demo").onclick = function() {myFunction()};
 
-function myFunction() {
-    //document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
-    var mycomment = document.getElementById("comment").value  ;
-    var dateSetting = new Date();
-    //alert(dateSetting) ; 
-    
-    document.cookie = "" ; 
-    setCookie(mycomment,dateSetting) ; 
-     
-}
+    function myFunction() {
+        //document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+        var mycomment = document.getElementById("comment").value;
+        var dateSetting = new Date();
+        //alert(dateSetting) ; 
+        var itemList;
+        itemList = getCookie("appointments");
+        if (itemList) {
+            itemList = JSON.parse(itemList);
+        } else {
+            itemList = [];
+        }
+        newItem = {};
+        newItem.comment = mycomment;
+        newItem.date = dateSetting;
+        itemList.push(newItem);
+        setCookie("appointments", JSON.stringify(itemList), 0.5);
 
-    function setCookie(mycomment,dateSetting){
-        // get the right date according to the page 
-    var oldCookie = document.cookie ;  
+    }
 
-    var cookieString = oldCookie +    "myComment=" + mycomment +  ",Date=" + dateSetting + ",";
-    document.cookie = cookieString;
-}
+    function setCookie(name, value, hours) {
+        var date, expires;
+        name = encodeURIComponent(name);
+        value = encodeURIComponent(value);
+        if (hours) {
+            date = new Date();
+            date.setHours(date.getHours + hours);
+            expires = "; expires=" + date.toGMTString();
+        } else {
+            expires = "";
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var name2, cookies, cookie, i;
+        name = encodeURIComponent(name);
+        name2 = name + "=";
+        cookies = document.cookie.split(";");
+        for (i = 0; i < cookie.length; i += 1) {
+            cookie = cookies[i].trim();
+            if (cookie.indexOf(name2) === 0) {
+                return decodeURIComponent(cookie.substring(name2.length, cookie.length));
+            }
+        }
+        return null;
+
+    }
 
 
 </script>
