@@ -1,0 +1,72 @@
+<!DOCTYPE HTML> 
+<html lang="en-US"> 
+<head> 
+    
+      <script type='text/javascript' src="js/libs/jquery/jquery.js"></script>
+        <script type='text/javascript' src="js/libs/json3/json3.js"></script>
+        <script type='text/javascript' src="emulator.js"></script>
+         <script type='text/javascript' src="appFunctions.js"></script>
+    <meta charset="UTF-8"> 
+    <title>Easy JavaScript Testing </title> 
+    <style> 
+        .pass:before { 
+            content: 'PASS: '; 
+            color:  blue; 
+            font-weight: bold; 
+        } 
+  
+        .fail:before { 
+            content: 'FAIL: '; 
+            color: red; 
+            font-weight: bold; 
+  
+        } 
+    </style> 
+</head> 
+<body> 
+  
+<ul id="output"></ul> 
+  
+<script> 
+var output = document.getElementById('output'); 
+  
+function assert( outcome, description ) { 
+    var li = document.createElement('li'); 
+    li.className = outcome ? 'pass' : 'fail'; 
+    li.appendChild( document.createTextNode( description ) ); 
+  
+    output.appendChild(li); 
+}; 
+</script>
+
+<script>
+var someArray = [1,2,3,4,5], 
+	len = someArray.length, 
+	i = 0; 
+ 
+var count = 0; 
+ 
+function add(num1,num2){
+    return num1 + num2;
+    
+}
+var result = add(23,43);
+
+assert(result=== 23, 'Checking the add function');/*so 23 is incorrect*/
+
+//testing abs function
+var abstest = abs(1);
+assert(abstest=== 1, 'Checking the abs function');
+
+//var e = jQuery.Event( "keydown", { keyCode: 64 } );
+//var MouseStartTest = mouseStart();
+var setcookieTest = setCookie(input);
+//assert that document.cookie is equal to whatever it should equal
+assert(document.cookie = name + "=" + value + expires + "; path=/");
+
+var getcookietest = getCookie("hello");
+</script>
+
+
+</body>
+</html>
