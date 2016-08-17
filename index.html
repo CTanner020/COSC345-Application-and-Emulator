@@ -10,42 +10,63 @@ COSC345 Assignments 2 "The Emulator"
         <script type='text/javascript' src="js/libs/jquery/jquery.js"></script>
         <script type='text/javascript' src="js/libs/json3/json3.js"></script>
         <script type='text/javascript' src="emulator.js"></script>
+        <script type='text/javascript' src="appFunctions.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
+        <style> 
+            #test {
+                width: 300px;
+                height: 300px;
+                background-color: white;
+                border: 1px solid black;
+                transform: translate(85px,89px); /* Standard syntax */
+            }
+        </style>
     </head>
     <body>
 
         <!-- The text division -->
         <div id="textDescription">
-            
-            <h3>Smart Watch for Calendar Emulator</h3>
 
-      
+            <h3>Smart Watch for Calendar Emulator first version</h3>
+
             <p>
-                This is just a design for the emulator to show the position of our app
+            <b>Welcome to our smartwatch calendar!</b><br>
+            <br>
+            To start the calendar, click the grey square labeled "Calendar App".<br>
+            To make an appointment on a day, click on that day and fill in the
+            details on the next screen.<br>
+            To change month, "swipe" sideways on the screen by clicking,
+            dragging, and releasing the mouse.<br>
+            To view and delete appointments, click on "view app" in the top
+            right hand corner.<br>
+            <br>
+            We hope you enjoy using our app!<br>
             </p>
- 
-        </div>
-        
-        
 
-       <div style="background:url(tra.png) no-repeat; background-size: 440px 550px; width:440px;height:550px">
-         
-            <canvas width="620" height="620" id="canvas" 
-                    style="border:0px solid #000000;">
-                Your browser does not support canvas. please update!
-            </canvas>
-            
         </div>
-        
-        
- <div id="divClick">No clicks</div>
 
-       
+
+
+        <div id="canvasimage" style="background:url(tra.png) no-repeat; background-size: 440px 550px; width:440px;height:550px">
+
+            <div id="test" style=" float: top; overflow:scroll; " >
+                <canvas width=300 height=300 id="canvas" 
+                        style="border:0px solid #000000;">
+                    Your browser does not support canvas. please update!
+                </canvas>
+            </div>
+        </div>
+
+
+        <div id="divClick" style="display: none;">No clicks</div>
+
+
 
 
         <script>
-            startEmulator(); 
+            startEmulator();
         </script>
     </body>
 </html>
