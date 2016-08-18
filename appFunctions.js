@@ -4,20 +4,20 @@
  * and open the template in the editor.
  */
 
-//Sets up the necessary variables
+/*
+ * Sets up the necessary variables for later use
+ */
 
 var ctx;
 var boxes = [];  //An array for holding each box
 var d = new Date();  //date variable used to set the date for each box
 var x; //used later on to check that the month is the same
-var x1;
-var x2;
-var y1;
-var y2;
-var dayNames = [" Su", "Mo", "Tu", "We", "Th", " F", "Sa"];
+var xChange;
+var yChange;
+var dayNames = [" Su", "Mo", "Tu", "We", "Th", " Fr", "Sa"];
 var globalDay = 0;
 var globalMonth = 0;
-var globalYear = nyear;
+var globalYear = 0;
 var currentDate = new Date();
 var monthNames = ["January", "February", "March", "April", "May",
     "June", "July", "August", "September", "October", "November",
@@ -26,19 +26,20 @@ var monthNames = ["January", "February", "March", "April", "May",
 var dyear = new Date();
 var nyear = currentDate.getFullYear();
 
-var oldCanvas = '<canvas ' +
+var oldScreen = '<canvas ' +
         'onmousedown=\"mouseStart(event)\" ' + 'onmouseup=\"mouseEnd(event)\" ' +
         ' width="' + 300 + '" height="' + 300
         + '" id="' + 'canvas_1"  ' + 'style=\"border:1px solid #c3c3c3;\" ' + '>' +
         'initialisation!' +
         '</canvas>';
 
+
 /*
  * A draw function for the writing in the boxes
  * drawing text at position x y
  */
 var draw = function (text, x, y) {
-    var c = getThing("canvas_1");
+    var c = getObject("canvas_1");
     ctx = c.getContext("2d");
     ctx.font = "18px Georgia";
     ctx.fillstyle = "#000000";
@@ -46,8 +47,10 @@ var draw = function (text, x, y) {
 };
 
 /*
- * Keeps the coordinates for a box
- * create object box with x y position height and width and which day
+ * Keeps the coordinates for a box.
+ * Create object box with x y position height and width and which day.
+ * These are not the visible boxes, just the co-ordinates that they respond to
+ * and their day.
  */
 var Box = function (x, y, width, height, day) {
     this.left = x;
@@ -59,11 +62,11 @@ var Box = function (x, y, width, height, day) {
 
 
 /*
- * Draws a box, then keeps the coordinates in the array
+ * Draws a box, then stores the coordinates in the array
  * with a text at position x and y and define the width height
  */
 var drawBox = function (text, x, y, width, height) {
-    var c = getThing("canvas_1");
+    var c = getObject("canvas_1");
     var rect = c.getBoundingClientRect();
     draw(text, x, y);
     var box = new Box(x + rect.left, y + rect.top, width, height, text);
@@ -72,27 +75,28 @@ var drawBox = function (text, x, y, width, height) {
 
 
 /*
- * Draws the days of the week across the top for each month
+ * Draws the days of the month on the screen. This is the visible part of the app.
  */
 function drawTwo() {
     boxes = [];
-    var c = getThing("canvas_1");
+    var c = getObject("canvas_1");
     ctx = c.getContext("2d");
     var boxWidth = (c.width - 15) / 7;  //allow 15px for the scroll bars
     var boxHeight = (c.height - 15) / 7;
     x = d.getMonth();
     var day = d.getDate();
+    var y = d.getFullYear();
     d.setDate(1);
 
 
     for (i = 0; i < dayNames.length; i++) {
         ctx.fillStyle = "#000000";
-        ctx.font = "15px Georgia";
+        ctx.font = "14px Georgia";
         ctx.fillText(monthNames[d.getMonth()], 20, 20);
-        ctx.fillText(nyear, 100, 20);
+        ctx.fillText(d.getFullYear(), 100, 20);
         ctx.fillText(dayNames[i], (5 + i * boxWidth), 45);
-
     }
+    
     ctx.fillStyle = "white";
     ctx.fillRect(205, 5, 90, 24);
     ctx.fillStyle = "#000000";
@@ -119,29 +123,34 @@ function drawTwo() {
     }
     d.setDate(day);
     d.setMonth(x);
+    d.setFullYear(y);
     x = 0;
 }
 
+/*
+ * This is called to start the application itself.
+ */
 var prototype = (function () {
     "use strict";
 
     var pub = {};
 
     pub.protoInitialise = function () {
-        getThing("test").innerHTML = oldCanvas;
+        writeContentTo(oldScreen, "test");
         drawTwo();
     };
     return pub;
 }());
 
 /*
- * save appt to a cookie with the information given by the user.
+ * Save the appt to data storage with the information given by the user.
+ * Ends by returning to the previous screen.
  */
 function saveAppt() {
-    var mycomment = getThing("comment").value;
-    var mytime = getThing("time").value;
+    var mycomment = getElementValue("comment");
+    var mytime = getElementValue("time");
     var itemList;
-    itemList = getCookie("appointments");
+    itemList = getData("appointments");
     if (itemList) {
         itemList = JSON.parse(itemList);
     } else {
@@ -149,11 +158,11 @@ function saveAppt() {
     }
     newItem = {};
     newItem.comment = mycomment;
-    newItem.date = globalYear + "-" + globalMonth + "-" + globalDay + "    " + mytime;
+    newItem.date = globalMonth + "-" + globalDay + "-" + globalYear + "    " + mytime;
     itemList.push(newItem);
-    setCookie("appointments", JSON.stringify(itemList), 0.5);
+    setData("appointments", JSON.stringify(itemList));
     d.setMonth(x);
-    resetCanvas(oldCanvas);
+    resetDisplay(oldScreen);
     drawTwo();
 }
 
@@ -161,8 +170,8 @@ function saveAppt() {
  * delete appointment.
  */
 function DeleteAppt(elmnt) {
-    var theappt = elmnt.value; 
-    deleteInCookie(theappt);
+    var theappt = elmnt.value;
+    deleteInData(theappt);
 }
 
 /*
@@ -170,39 +179,39 @@ function DeleteAppt(elmnt) {
  */
 function back() {
     d.setMonth(x);
-    resetCanvas(oldCanvas);
+    resetDisplay(oldScreen);
     drawTwo();
 }
 
 /*
  * save information in the cookie.
  */
-function setCookie(name, value, hours) {
+function setData(name, value, hours) {
     var date, expires;
     name = encodeURIComponent(name);
     value = encodeURIComponent(value);
     if (hours) {
         date = new Date();
         date.setHours(date.getHours + hours);
-        expires = "; expires=" + date.toGMTString();
+        expires = "; expires=" + date.toString();
     } else {
         expires = "";
     }
-    document.cookie = name + "=" + value + expires + "; path=/";
+    storeData(name + "=" + value + expires + "; path=/");
 }
 
 /*
  * get the information from cookie.
  */
-function getCookie(name) {
-    var name2, cookies, cookie, i;
+function getData(name) {
+    var name2, data, datum, i;
     name = encodeURIComponent(name);
     name2 = name + "=";
-    cookies = document.cookie.split(";");
-    for (i = 0; i < cookies.length; i += 1) {
-        cookie = cookies[i].trim();
-        if (cookie.indexOf(name2) === 0) {
-            return decodeURIComponent(cookie.substring(name2.length, cookie.length));
+    data = returnData();
+    for (i = 0; i < data.length; i += 1) {
+        datum = data[i].trim();
+        if (datum.indexOf(name2) === 0) {
+            return decodeURIComponent(datum.substring(name2.length, datum.length));
         }
     }
     return null;
@@ -222,17 +231,17 @@ function cleanArray(actual) {
 }
 
 /*
- * get telement in a cookie at position num.
+ * get element in a cookie at position num.
  */
-function deleteInCookie(num) {
+function deleteInData(num) {
     var itemList;
-    itemList = getCookie("appointments");
+    itemList = getData("appointments");
     itemList = JSON.parse(itemList);
     delete itemList[num];
     itemList = cleanArray(itemList);
-    setCookie("appointments", JSON.stringify(itemList), 0.5);
-    resetCanvas(oldCanvas);
-    drawTwo();
+    setData("appointments", JSON.stringify(itemList), 0.5);
+    resetDisplay(oldScreen);
+    showAppointments();
 }
 
 /*
@@ -247,75 +256,80 @@ function abs(x) {
 }
 
 /*
- * get position of mouse at click.
+ * This code determines what to do in response to the mouse actions that are
+ * handled by the emulator.
+ * -Triggers showAppointments() if "view app" was clicked
+ * -Triggers a new appointment if a day was clicked
+ * -A swipe will alter the month
  */
-function mouseStart(event) {
-    x1 = event.pageX;
-    y1 = event.pageY;
-}
-
-/*
- * get poistion of release mouse then define the right event is it swipe of just click and where cv.
- */
-function mouseEnd(event) {
-    x2 = event.pageX;
-    y2 = event.pageY;
+function actionCheck(xEnd, yEnd, xChange, yChange) {
     x = d.getMonth();
+    year = d.getFullYear();
 
-    if (abs(x2 - x1) < 10 && abs(y2 - y1) < 10) {
+    if (abs(xChange) < 10 && abs(yChange) < 10) {
         for (i = 0; i < boxes.length; i++) {
-            if (x2 < boxes[i].right && x2 > boxes[i].left && y2 > boxes[i].top && y2 < boxes[i].bottom) {
+            if (xEnd < boxes[i].right && xEnd > boxes[i].left && yEnd > boxes[i].top && yEnd < boxes[i].bottom) {
                 if (boxes[i].day === "view app") {
-                    var itemList;
-                    itemList = getCookie("appointments");
-
-                    getThing("test").innerHTML = "";
-                    var htmlString;
-                    htmlString = '<button onclick=' + '\"back()\" type=\"button\" id=\"back\">Back</button>';
-                    ;
-                    count = 0;
-                    itemList = JSON.parse(itemList); 
-                    if (itemList.length === 0) {
-                        htmlString += " <br><br>You have no appointments!";
-
-                    } else {
-
-                        htmlString += "<table><tr><th>Appointment   s </th><th>Date & Time</th></tr>";
-                        itemList.forEach(function (item) {
-                            htmlString += "<tr><td>" + item.comment + "</td><td>" + item.date +
-                                    "</td></tr><tr><td><button onclick=\"DeleteAppt(this)\" type=\"button\" value=" + count + " id=\"deleteButton\">delete </button></td></tr>";
-                            count = count + 1;
-                        });
-                        htmlString += "</table>";
-                    }
-
-                    getThing("test").innerHTML = htmlString;
+                    showAppointments();
                 } else {
                     globalDay = boxes[i].day;
                     globalMonth = monthNames[x];
-                    getThing("test").innerHTML =
+                    globalYear = year;
+                    writeContentTo(
                             '<button onclick=' + '\"back()\" type=\"button\" id=\"back\">Back</button>' +
                             '<br>' + monthNames[x] + ' ' + globalDay + "<br>" +
                             '<br> <button onclick=' + '\"saveAppt()\" type=\"button\" id=\"demo\">Make Appointment!</button>' + ' : ' +
                             '<input id=\"comment\" type=\"text\" name=\"fname\">   <br>  ' +
-                            'Select Time: <input id=\"time\" type="time" name="usr_time" step=\"1\"  value="19:47:13">';
+                            'Select Time: <input id=\"time\" type="time" name="usr_time" step=\"1\"  value="">'
+                            , "test");
                 }
             }
         }
 
     } else {
-        if (30 < x1 - x2) {
+        if (30 < xChange) {
             x++;
             d.setMonth(x);
-            resetCanvas(oldCanvas);
+            resetDisplay(oldScreen);
             drawTwo();
         } else {
-            if (30 < x2 - x1) {
+            if (-30 > xChange) {
                 x--;
                 d.setMonth(x);
-                resetCanvas(oldCanvas);
+                resetDisplay(oldScreen);
                 drawTwo();
             }
         }
     }
+}
+
+/*
+ * Used to display the current appointments.
+ * By having it as a separate funcion, can call it once changes are made to the
+ * appointment list instead of jumping back to the month view.
+ */
+function showAppointments() {
+    var itemList;
+    itemList = getData("appointments");
+
+    writeContentTo("", "test");
+    var htmlString;
+    htmlString = '<button onclick=' + '\"back()\" type=\"button\" id=\"back\">Back</button>';
+    var count = 0;
+    itemList = JSON.parse(itemList);
+
+    if (itemList === null || itemList.length === 0) {
+        htmlString += " <br><br>You have no appointments!";
+
+    } else {
+
+        htmlString += "<table><tr><th>Appointment</th><th>Date & Time</th></tr>";
+        itemList.forEach(function (item) {
+            htmlString += "<tr><td>" + item.comment + "</td><td>" + item.date +
+                    "</td></tr><tr><td><button onclick=\"DeleteAppt(this)\" type=\"button\" value=" + count + " id=\"deleteButton\">delete </button></td></tr>";
+            count = count + 1;
+        });
+        htmlString += "</table>";
+    }
+    writeContentTo(htmlString, "test");
 }
