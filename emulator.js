@@ -1,15 +1,37 @@
-
-            
+/*
+ * These are the global variables that are used later.
+ */         
 var icons = [1, 2, 3, 4, 5];
+var x1,x2,y1,y2;
 
-function resetCanvas(string) {
+/*
+ * The following 6 functions are used to mask the browser from the application.
+ * Rather than making calls to browser details, the application calls these
+ * functions to do those things for them.
+ */
+function resetDisplay(string) {
     document.getElementById("test").innerHTML = string;
 }
 
-function getThing(element){
+function getObject(element){
     return document.getElementById(element);
 }
 
+function writeContentTo(content, place){
+    document.getElementById(place).innerHTML = content;
+}
+
+function getElementValue(element){
+    return document.getElementById(element).value;
+}
+
+function storeData(data){
+    document.cookie = data;
+}
+
+function returnData(){
+    return document.cookie.split(";");
+}
 
  /* Create one square for our app at position x and y and width and height with our settings */      
 function createPrototype(x, y, width, height) {   
@@ -20,22 +42,23 @@ function createPrototype(x, y, width, height) {
     drawRect(x, y, width, height,actionApp);
     //Write the app "name" to the icon.
     ctx.fillStyle = "#FFFFFF";
-    ctx.font = "12px Sans Serif";
+    ctx.font = "10px Sans Serif";
     ctx.fillText("Calendar", x + 5, (y+15));
     ctx.fillText("App", (width/3) + x, (height/3) + (y+15)); 
 }
 
 
-
-function actionApp() { //open the appFunction
-    $(function () {
+/*
+ * This calls to a function in the application that starts the app itself.
+ */
+function actionApp() {
         prototype.protoInitialise();
-    });
-
-
 }
 
-// get the position of the click
+/*
+ * gets the position of the initial click so that the application only starts
+ * when the centre square is clicked.
+ */
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -43,8 +66,9 @@ function getMousePos(canvas, evt) {
         y: evt.clientY - rect.top
       };
 }
-
-// printing the position
+/* Prints the position of the click. This was a feature we later removed,
+ * but is still important for triggering the application.
+ */
 function printPosition() {
     document.getElementById("divClick").innerHTML = sqMes;
 }
@@ -102,7 +126,9 @@ function drawRect(x, y, width, height,action) {
 }
 
 
-/* start the emulator to draw the different apps on the watch and our specific app icon */ 
+/* start the emulator to draw the other "apps" on the watch and 
+ * our specific app icon
+ */ 
 function startEmulator() {
     //Create the Canvas stuff
     var c = document.getElementById("canvas");
@@ -121,4 +147,27 @@ function startEmulator() {
             }                     
         }
     }
+}
+
+/*
+ * Get position of mouse at click.
+ * This is the click down for the swipe event handling.
+ */
+function mouseStart(event) {
+    x1 = event.pageX;
+    y1 = event.pageY;
+}
+
+/*
+ * Get position of mouse at buttonUp.
+ * This gives the position, as well as the distance that the mouse has moved.
+ * It then passes all this information to the application so that it can
+ * determine what changes need to happen in response to that.
+ */
+function mouseEnd(event){
+    x2 = event.pageX;
+    y2 = event.pageY;
+    xChange = x1-x2;
+    yChange = y1-y2;
+    actionCheck(x2,y2,xChange,yChange);
 }
