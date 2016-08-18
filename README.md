@@ -1,6 +1,5 @@
-# COSC345-Application-and-Emulator
+# COSC345-Application-and-Emulator - Assignment 3
 This is where we store files relevant to the Application and Emulator.
 
-I've added the report from the first section here so that we can access it for future reference.
-By using this place instead of the previous repository, we can cut down on the number of files to
-avoid confusion/getting too large.
+This branch contains only the necessary files to run the application and emulator, as well as relevant reports and testing scripts.
+There are also two zip files, which separately contain the application files and the emulator files, for passing on to the other teams for part 4 of the assignment.
