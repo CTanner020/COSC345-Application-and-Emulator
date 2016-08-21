@@ -1,0 +1,88 @@
+<!DOCTYPE HTML> 
+<html lang="en-US"> 
+<head> 
+    
+      <script type='text/javascript' src="js/libs/jquery/jquery.js"></script>
+        <script type='text/javascript' src="js/libs/json3/json3.js"></script>
+		
+        <script type='text/javascript' src="emulator.js"></script>
+         <script type='text/javascript' src="appFunctionsfortesting.js"></script>
+    <meta charset="UTF-8"> 
+    <title>Unit Testing</title> 
+    <style> 
+        
+    </style> 
+</head> 
+<body> 
+  
+
+
+<script>
+
+//tests display function
+function testOutput(bool,test){
+
+if(bool===true){
+result = "PASS: ";
+result = result.fontcolor("blue").bold();
+}
+if(bool===false){
+result = "FAIL: ";
+result = result.fontcolor("red").bold();
+}
+document.writeln("<br>" + result + test + "<br>");
+}
+
+
+//tests 
+cleanArrayTest(); 
+dataTests();
+mouseTests();
+
+function cleanArrayTest(){
+
+var test5 = new Array(5);
+var cleanArraytest5 = cleanArray(test5);
+
+var test3000 = new Array(3000);
+var cleanArraytest3000 = cleanArray(test3000);
+
+  if(cleanArraytest5.length ===0){ 
+ testOutput(true,"cleanArray array length 5");
+ }else{
+ testOutput(false,"cleanArray array length 5");
+ }
+
+ if(cleanArraytest3000.length ===0){ 
+ testOutput(true,"cleanArray array length 3000");
+ }else{
+ testOutput(false,"cleanArray array length 3000");
+ }
+
+ }
+ 
+function mouseTests(){
+//click test
+actionCheck(233, 471, 0, 0);
+//right swipe test
+actionCheck(359, 471, -155, 16);
+}
+
+function dataTests(){
+var undefined;//creates undefined variable
+//no hours test
+setDataTest("appointments", {"comment":"test","date":"August-3-2016    "}, undefined);
+//with hours test
+setDataTest("appointments", {"comment":"test","date":"August-30-2016    "}, 0.5);
+}
+</script>
+
+
+<!--this test will only work at this point in the testing-->
+<script>
+//left swipe test
+actionCheck(156, 599, 138, -7);
+</script>
+
+</body>
+</html>

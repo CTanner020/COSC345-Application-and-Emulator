@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+COSC345 Assignments 2 "The Emulator"
+-->
+<html>
+    <head>
+        <title>Emulator 0.1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type='text/javascript' > 
+        var bool2 = false; 
+        </script>
+        <script type='text/javascript' src="json3.js"></script>
+        <script type='text/javascript' src="emulator.js"></script>
+        <script type='text/javascript' src="appFunctionsfortesting.js"></script>
+
+
+        <style> 
+            #test {
+                width: 300px;
+                height: 300px;
+                background-color: white;
+                border: 1px solid black;
+                transform: translate(85px,89px); /* Standard syntax */
+            }
+            
+        </style>
+    </head>
+    <body>
+
+        <!-- The text division -->
+        <div id="textDescription">
+
+            <h3>Smart Watch for Calendar Emulator final version</h3>
+
+            <p>
+            <b>Welcome to our smartwatch calendar!</b><br>
+            <br>
+            To start the calendar, click the grey square labeled "Calendar App".<br>
+            To make an appointment on a day, click on that day and fill in the
+            details on the next screen.<br>
+            To change month, "swipe" sideways on the screen by clicking,
+            dragging, and releasing the mouse.<br>
+            To view and delete appointments, click on "view app" in the top
+            right hand corner.<br>
+            <br>
+            We hope you enjoy using our app!<br>
+            </p>
+
+        </div>
+
+
+
+        <div id="canvasimage" style="background:url(tra.png) no-repeat; background-size: 440px 550px; width:440px;height:550px">
+
+            <div id="test" style=" float: top; overflow:scroll; " >
+                <canvas width=300 height=300 id="canvas" 
+                        style="border:0px solid #000000;">
+                    Your browser does not support canvas. please update!
+                </canvas>
+            </div>
+        </div>
+
+
+        <div id="divClick" style="display: none;">No clicks</div>
+
+
+
+
+        <script>
+            startEmulator();
+        </script>
+    </body>
+</html>
